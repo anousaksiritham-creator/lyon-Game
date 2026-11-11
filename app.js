@@ -22,7 +22,7 @@ function options(){
  $('tabs').innerHTML=categories.map(([id,icon,label])=>`<button class="tab" role="tab" aria-selected="${active===id}" data-tab="${id}"><span>${icon}</span>${label}</button>`).join('');
  $('choice-title').textContent=categories.find(c=>c[0]===active)[2]+'ທີ່ເຈົ້າມັກ';
  const isColor=active==='wall'||active==='roof';
- const labels=isColor?names:active==='door'?['ທຳມະດາ','ລາຍໄມ້','ມີປ່ອງ']:active==='windows'?['ສີ່ຫຼ່ຽມ','ວົງມົນ','ໂຄ້ງມົນ']:['ຕົ້ນໄມ້','ດອກໄມ້','ຮົ້ວນ້ອຍ'];
+ const labels=isColor?(active==='roof'?['ສີສົ້ມ','ສີຟ້າ','ສີຂຽວ','ສີມ່ວງ','ສີທອງ','ສີເທົາ']:names):active==='door'?['ທຳມະດາ','ລາຍໄມ້','ມີປ່ອງ']:active==='windows'?['ສີ່ຫຼ່ຽມ','ວົງມົນ','ໂຄ້ງມົນ']:['ຕົ້ນໄມ້','ດອກໄມ້','ຮົ້ວນ້ອຍ'];
  $('choices').innerHTML=labels.map((name,i)=>`<button class="choice" aria-pressed="${state[active]===i}" data-choice="${i}">${isColor?`<span class="swatch" style="background:${(active==='wall'?colors:roofs)[i]}"></span>`:`<span class="sample">${(active==='door'?['🚪','▥','◉']:active==='windows'?['⊞','⊕','▰']:['🌳','🌷','🏡'])[i]}</span>`}${name}</button>`).join('');
 }
  $('tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b){active=b.dataset.tab;options();$('tabs').querySelector(`[data-tab="${active}"]`).focus();tone(440);}});
