@@ -1,5 +1,5 @@
 const http=require('node:http');
 const fs=require('node:fs');
 const path=require('node:path');
-const files={'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js'};
+const files={'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js','/world3d.html':'world3d.html','/world3d.js':'world3d.js','/three.module.js':'three.module.js'};
 http.createServer((req,res)=>{const file=files[new URL(req.url,'http://localhost').pathname];if(!file){res.writeHead(404);res.end('Not found');return;}res.setHeader('Content-Type',file.endsWith('.css')?'text/css; charset=utf-8':file.endsWith('.js')?'text/javascript; charset=utf-8':'text/html; charset=utf-8');fs.createReadStream(path.join(__dirname,'dist',file)).pipe(res);}).listen(4173,'127.0.0.1',()=>console.log('Local: http://127.0.0.1:4173'));
